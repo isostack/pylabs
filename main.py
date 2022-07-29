@@ -1,12 +1,12 @@
 from tkinter import *
+from tkinter import messagebox
+import pyperclip
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def gen_pass():
     import random
     # Generate a random password
     pass_inpt.delete(0,END)
-    password = ''
-    for i in range(0,8):
-        password += chr(random.randint(33,126))
+    password = ''.join([chr(random.randint(48,126)) for _ in range(0,8)])
     pass_inpt.insert(0,password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def add_data():
@@ -14,13 +14,21 @@ def add_data():
     item_name = wnt_inpt.get()
     item_mail = mail_inpt.get()
     item_pass = pass_inpt.get()
-    # Save the password
-    with open('passwords.txt', 'a') as file:
-        item = item_name + ' | ' + item_mail + ' | ' + item_pass + '\n'
-        file.write(item)
-    # Clear the password
-    pass_inpt.delete(0,END)
-    wnt_inpt.delete(0,END)
+    # Check if the password is empty
+    if len(item_pass) == 0 or len(item_name) == 0 or len(item_mail) == 0:
+        messagebox.showinfo('Error','You have unfilled fields in the form!')
+    else:    
+        state = messagebox.askokcancel(title = item_name , message=f"Website: {item_name}'s \nPassword: {item_pass} \nEmail: {item_mail} \n\nIs this correct?")
+        # Save the password
+        
+        if state:
+            with open('passwords.txt', 'a') as file:
+                item = item_name + ' | ' + item_mail + ' | ' + item_pass + '\n'
+                file.write(item)
+        # Clear the password
+            pyperclip.copy(item_pass)
+            pass_inpt.delete(0,END)
+            wnt_inpt.delete(0,END)
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
