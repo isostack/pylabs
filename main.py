@@ -3,6 +3,7 @@ from tkinter import *
 def gen_pass():
     import random
     # Generate a random password
+    pass_inpt.delete(0,END)
     password = ''
     for i in range(0,8):
         password += chr(random.randint(33,126))
@@ -10,12 +11,16 @@ def gen_pass():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def add_data():
     # Get the password
-    password = gen_pass()
+    item_name = wnt_inpt.get()
+    item_mail = mail_inpt.get()
+    item_pass = pass_inpt.get()
     # Save the password
-    file = open('vault.txt','w')
-    file.write(password)
-    file.close()
-    # Display the password
+    with open('passwords.txt', 'a') as file:
+        item = item_name + ' | ' + item_mail + ' | ' + item_pass + '\n'
+        file.write(item)
+    # Clear the password
+    pass_inpt.delete(0,END)
+    wnt_inpt.delete(0,END)
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
@@ -45,6 +50,6 @@ pass_inpt.grid(row=3,column=1)
 gen_btn = Button(window,text="Generate Password",command=gen_pass)
 gen_btn.grid(row=3,column=2)
 
-save_btn = Button(window,width=46, text="Add Item")
+save_btn = Button(window,width=46, text="Add Item", command=add_data)
 save_btn.grid(row=4,column=1 , columnspan=2)
 window.mainloop()
