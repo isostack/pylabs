@@ -29,14 +29,40 @@ def add_data():
         # Display error message
         messagebox.showinfo('Error','You have unfilled fields in the form!')
     else:
-        with open('password.json', 'w') as json_file:
-            json.dump(json_data , json_file , indent=4)
-        # Clear the password
+        try:
+            with open('password.json', 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError or ValueError:
+            with open('password.json','w') as file:
+                json.dump(json_data,file,indent=4)  
+        else:
+            with open('password.json', 'r') as file:
+                data = json.load(file)
+                data.update(json_data)
+
+            with open('password.json' , 'w') as filer:
+                json.dump(data,filer,indent=4)  
+        finally:           
             pyperclip.copy(item_pass)
             pass_inpt.delete(0,END)
             wnt_inpt.delete(0,END)
 
-    
+def search_func():
+    # Get data
+    item_name = wnt_inpt.get()
+    try:
+        with open('password.json' ,'r') as file:
+            inbound = json.load(file)
+    except FileNotFoundError:
+        messagebox.showinfo("Error" , f"Datafile not found")
+    else:
+        try:
+            info_data = inbound[item_name]
+        except KeyError:
+            messagebox.showinfo("Error" , f"Search data \"{item_name}\" not found")
+        else:
+            messagebox.showinfo(item_name,f'Email: {info_data["email"]}\n\nPassword: {info_data["password"]}')
+
     # item_name = wnt_inpt.get()
     # item_mail = mail_inpt.get()
     # item_pass = pass_inpt.get()
@@ -80,6 +106,9 @@ mail_inpt.grid(row=2,column=1,columnspan=2)
 mail_inpt.insert(END,"gamma@gmail.com")
 pass_inpt = Entry(window,width=36)
 pass_inpt.grid(row=3,column=1)
+
+search_btn = Button(window,text="Search",width=15,command=search_func)
+search_btn.grid(row=1,column=2)
 
 gen_btn = Button(window,text="Generate Password",command=gen_pass)
 gen_btn.grid(row=3,column=2)
