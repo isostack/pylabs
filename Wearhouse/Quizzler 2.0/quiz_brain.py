@@ -1,6 +1,10 @@
+from cgitb import html
+
+
 import html
 
 class QuizBrain:
+
     def __init__(self, q_list):
         self.question_number = 0
         self.score = 0
@@ -14,18 +18,19 @@ class QuizBrain:
         self.current_question = self.question_list[self.question_number]
         self.question_number += 1
         q_text = html.unescape(self.current_question.text)
-        return f"Q.{self.question_number}: {q_text} True / False  "
+        return f"Q.{self.question_number}: {q_text} (True/False): "
         # user_answer = input(f"Q.{self.question_number}: {q_text} (True/False): ")
         # self.check_answer(user_answer)
 
-    def bring_answer(self):
+    def check_answer(self):
         correct_answer = self.current_question.answer
         return correct_answer
         # if user_answer.lower() == correct_answer.lower():
         #     self.score += 1
-        #     return True
+        #     print("You got it right!")
         # else:
-        #     return False
+        #     print("That's wrong.")
 
         # print(f"Your current score is: {self.score}/{self.question_number}")
         # print("\n")
+    
