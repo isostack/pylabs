@@ -16,8 +16,6 @@ from twilio.http.http_client import TwilioHttpClient
 # response.raise_for_status() 
 # print(response.json())
 
-
-
 h_data_main = hourly.hour_data[:10]
 
 will_rain = False
