@@ -1,12 +1,6 @@
 
 import json
 
-STOCK = "TSLA"
-COMPANY_NAME = "Tesla Inc"
-STOCK_AUTH = 'ZXAHJWK76RHXOIED'
-NEWS_AUTH = 'b55aeb9336b14d21a84647bfc891a683'
-TWILIO_SID = 'AC2dccdf48a1858bb3d441885dc0425840'
-TWILIO_AUTH = 'fd70103a08b509beb3a52b9f0fc55d02'
 
 #***************************** EQUITY DATA ****************************************#
 ## STEP 1: Use https://www.alphavantage.co
