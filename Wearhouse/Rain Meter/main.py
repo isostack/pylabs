@@ -3,9 +3,14 @@ import hourly
 import os
 from twilio.rest import Client
 from twilio.http.http_client import TwilioHttpClient
+import json
+inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+TOKENS =  json.load(inbound)
+
+OPENWEATHERAUTH = TOKENS["openweathermap.com auth"]
 
 # endpoint = "https://api.openweathermap.org/data/3.0/onecall"
-# api_key = os.environ.get("OWM_API_KEY")
+# api_key = OPENWEATHERAUTH 
 # parameters = {
 #     "lat": 5.551167,
 #     "lon": 0.200450,
@@ -30,14 +35,14 @@ for item in condition_codes:
 # account_sid = os.environ['TWILIO_ACCOUNT_SID']
 # auth_token = os.environ['TWILIO_AUTH_TOKEN']
 
-account_sid = 'AC2dccdf48a1858bb3d441885dc0425840'
-auth_token = os.environ.get("AUTH_TOKEN")
+TWILIO_SID = TOKENS["twilio.com sid"]
+TWILIO_AUTH = TOKENS["twilio.com auth"] 
 
 if will_rain:
     proxy_client = TwilioHttpClient()
     proxy_client.session.proxies = {'https':os.environ['https_proxy']}
 
-    client = Client(account_sid, auth_token , http_client=proxy_client)
+    client = Client(TWILIO_SID, TWILIO_AUTH , http_client=proxy_client)
     message = client.messages \
                 .create(
                      body="The twilio app and sms script is working! Remember to bring an umbrella.",

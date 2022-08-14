@@ -1,13 +1,15 @@
 import email
+import json
+inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+TOKENS =  json.load(inbound)
 
-
+USERNAME = TOKENS["outlook.com mail"]
+AUTH = TOKENS["outlook.com pass"]
 import smtplib 
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-email = "dezynarh@gmail.com"
-pas = "Tylenol123"
 
 sms_gateway = 'hazmatlatif@gmail.com'
 # The server we use to send emails in our case it will be gmail but every email provider has a different smtp 
@@ -20,7 +22,7 @@ with smtplib.SMTP(smtp,port) as server:
     # Starting the server
     server.starttls()
     # Now we need to login
-    server.login(email,pas)
+    server.login(USERNAME,AUTH)
 
     # Now we use the MIME module to structure our message.
     msg = MIMEMultipart()
@@ -37,8 +39,6 @@ with smtplib.SMTP(smtp,port) as server:
 
     server.sendmail(email,sms_gateway,sms)
 
-# my_mail = 'dezynarh@gmail.com'
-# my_pass = 'Tylenol123'
 
 # with smtplib.SMTP('smtp-mail.outlook.com',587) as connection:
 #     connection.ehlo()

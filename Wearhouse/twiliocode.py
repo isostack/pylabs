@@ -6,9 +6,14 @@ from twilio.rest import Client
 # account_sid = os.environ['TWILIO_ACCOUNT_SID']
 # auth_token = os.environ['TWILIO_AUTH_TOKEN']
 
-account_sid = 'AC2dccdf48a1858bb3d441885dc0425840'
-auth_token = os.environ.get(AUTH_KEY)
-client = Client(account_sid, auth_token)
+import json
+inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+TOKENS =  json.load(inbound)
+
+TWILIO_SID = TOKENS["twilio.com sid"]
+TWILIO_AUTH = TOKENS["twilio.com auth"]
+
+client = Client(TWILIO_SID, TWILIO_AUTH)
 
 message = client.messages \
                 .create(

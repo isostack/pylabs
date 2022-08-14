@@ -1,10 +1,14 @@
 from curses.ascii import US
 import requests
 import datetime
+import json
+inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+TOKENS =  json.load(inbound)
+
+USERNAME = TOKENS["pixela.com user"]
+AUTH_TOKEN = TOKENS["pixela.com auth"]
 
 PIXELA_ENDPOINT = "https://pixe.la/v1/users"
-USERNAME = "quanye"
-AUTH_TOKEN = "ACsjdhfasdkfhadoiufhadifuas"
 GRAPH_ID = "graph1"
 
 PIXEL_ENDPOINT = f"{PIXELA_ENDPOINT}/{USERNAME}/graphs/{GRAPH_ID}"

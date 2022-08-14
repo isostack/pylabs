@@ -1,6 +1,15 @@
 
 import json
+import json
+inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+TOKENS =  json.load(inbound)
 
+STOCK_AUTH = TOKENS["openweathermap.com auth"]
+NEWS_AUTH = TOKENS["newsapi.org auth"]
+NEWS_NAME = "Tesla Inc"
+STOCK_NAME = "TSL"
+TWILIO_SID = TOKENS["twilio.com sid"]
+TWILIO_AUTH = TOKENS["twilio.com auth"] 
 
 #***************************** EQUITY DATA ****************************************#
 ## STEP 1: Use https://www.alphavantage.co
@@ -9,7 +18,7 @@ import requests
 
 stock_params = {
     "function":"TIME_SERIES_DAILY",
-    "symbol":STOCK,
+    "symbol":STOCK_NAME,
     "apikey":STOCK_AUTH
 }
 stock_endpoint = 'https://www.alphavantage.co/query'
@@ -35,7 +44,7 @@ diff_percent = int((difference / data_one_closing) * 100)
 if diff_percent > 1:
     news_params = {
     "apiKey":NEWS_AUTH,
-    "qInTitle":COMPANY_NAME
+    "qInTitle":NEWS_NAME
     }
     news_url = f'https://newsapi.org/v2/everything'
     news_r = requests.get(news_url , params = news_params)
@@ -47,9 +56,9 @@ up = "🔺"
 down = "🔻"
 
 if data_one_closing - data_two_closing > 0:
-    final_paragraph = f"{STOCK}: {up}{diff_percent}%\n\n{news_paragraph}"
+    final_paragraph = f"{STOCK_NAME}: {up}{diff_percent}%\n\n{news_paragraph}"
 else:
-    final_paragraph = f"Miami\n{STOCK}: {down}{diff_percent}%\n\n{news_paragraph}"
+    final_paragraph = f"Miami\n{STOCK_NAME}: {down}{diff_percent}%\n\n{news_paragraph}"
 
 ## STEP 3: Use https://www.twilio.com
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
