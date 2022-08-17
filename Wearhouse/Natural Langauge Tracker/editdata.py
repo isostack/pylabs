@@ -1,8 +1,9 @@
-from urllib import request
 import requests
 import json
-inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+
+inbound = open("/home/baremetal/Dev Ops/all_tokens.json" , "r")
 TOKENS =  json.load(inbound)
+
 #******************************** VARIABLES  *****************************#
 APP_ID = TOKENS["nutritionix.com id"]
 API_AUTH = TOKENS["nutritionix.com auth"]

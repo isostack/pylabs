@@ -1,14 +1,14 @@
-from urllib import request
 import requests
 import datetime
 import json
-inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
-TOKENS =  json.load(inbound)
+
+# inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+# TOKENS =  json.load(inbound)
 
 
 #******************************** VARIABLES  *****************************#
-APP_ID = TOKENS["nutritionix.com id"]
-API_AUTH = TOKENS["nutritionix.com auth"]
+APP_ID = "9070a68a"
+API_AUTH = "7c6cee291957061f22bb037c8cf9ee84"
 NLP_ENPOINT = "https://trackapi.nutritionix.com/v2/natural/exercise"
 SHEET_ENDPOINT = "https://api.sheety.co/c2508c72b1a9443966fca6445ff27747/workoutTracker/workouts"
 DATE = datetime.datetime.now().strftime("%Y-%m-%d")
