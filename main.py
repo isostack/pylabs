@@ -1,9 +1,28 @@
 import bs4 
-import lxml 
+import requests
 
-with open("website.html" , encoding="utf8") as file:
-    contents = file.read()
+response = requests.get("htt[s://news.ycombinator.com/news")
 
-soup = bs4.BeautifulSoup(contents , "html.parser")
+yc_webpage = response.text
 
-print(soup.title.text)
+soup = bs4.BeautifulSoup(yc_webpage , "html.parser")
+
+
+article = soup.find(name = "a" , class_="storylink")
+article_text = article.getText()
+article_link = article.get("href")
+article_upvote = soup.find(name="span",class_="score").getText()
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
