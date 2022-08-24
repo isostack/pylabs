@@ -1,5 +1,7 @@
+
 from pathlib import WindowsPath
 from tkinter import *
+from tkinter import messagebox
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -56,6 +58,8 @@ def countdown_mechanism(count):
         for _ in range(work_sessions):
             marks += "✔"
         end_elem.config(text=marks)
+        messagebox.showinfo("Pomodoro App", f"You have completed {work_sessions} work sessions")
+        
         
 
 # ---------------------------- UI SETUP ------------------------------- # 
