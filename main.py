@@ -1,19 +1,22 @@
 import requests
 import bs4
+import spotipy
 
-URL = "https://site.gctu.edu.gh"
+
+#user_input = input("Which year would you like to travel to in YYY-MM-DD:")
+
+URL = "https://www.billboard.com/charts/hot-100/2000-08-12/"
 
 response = requests.get(URL)
 
-web_page = response.text
 
-soup = bs4.BeautifulSoup(web_page, "html.parser")
+soup = bs4.BeautifulSoup(response.text, "lxml")
 
-print(soup.prettify())
+first_list = [item.getText() for item in soup.find_all(name="h3" , class_="a-truncate-ellipsis")]
 
-all_movies = soup.find("table")
+second_list = [item.replace('\n' , '') for item in first_list ]
 
-print(all_movies)
+title_list = [item.replace('\t' , '') for item in second_list ]
 
 
 
