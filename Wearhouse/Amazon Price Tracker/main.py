@@ -31,8 +31,8 @@ if price < 280:
     email_gateway = "dezynarh@gmail.com"
     smtp = "smtp-mail.outlook.com"
     port = 587
-    USERNAME = "dezynarh@gmail.com"
-    AUTH="Tylenol123"
+    USERNAME = ""
+    AUTH=""
     
     with smtplib.SMTP(smtp,port) as server:
         server.starttls()
