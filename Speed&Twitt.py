@@ -20,3 +20,7 @@ search_field = driver.find_element(By.NAME, "q")
 # enter search keyword and submit
 search_field.send_keys("Selenium WebDriver Interview questions")
 search_field.submit()
+
+class SpeedorTwitt:
+    def __init__(self):
+        pass
