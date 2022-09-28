@@ -8,7 +8,7 @@ import random
 import datetime as dt
 import json
 
-inbound = open("/home/baremetal/Dev Ops/all_tokens.json")
+inbound = open("all_tokens.json")
 TOKENS =  json.load(inbound)
 
 date_now = dt.datetime.now()
@@ -31,7 +31,7 @@ from email.mime.multipart import MIMEMultipart
 
 MAIL_ID = TOKENS["outlook.com mail"]
 MAIL_AUTH = TOKENS["outlook.com pass"]
-mail_gateway = "hazmatlatif@gmail.com"
+mail_gateway = "kumi.bright00@yahoo.com"
 smtp = "smtp-mail.outlook.com"
 port = 587
 
@@ -49,7 +49,8 @@ def send_mail():
         server.sendmail(MAIL_ID,mail_gateway,sms)
     print("Email sent")
 
-import pandas 
+import pandas
+
 birthdays = pandas.read_csv("birthdays.csv")
 
 for index,row in birthdays.iterrows():
