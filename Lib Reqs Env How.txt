@@ -1,0 +1,5 @@
+$ pip freeze > requirements.txt
+$ pip3 install -r requirements.txt
+
+PS> python -m venv venv
+PS> venv\Scripts\activate
