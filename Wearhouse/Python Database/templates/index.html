@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My PC Library</h1>
+    {% if pc_list|length == 0: %}
+        <p>There are no PCs in the library.</p>
+    {% else: %}
+        <p>There are {{ pc_list|length }} PCs in the library.</p>
+        <ul>
+            {% for pc in pc_list: %}
+                <li>{{pc.title}} - {{pc.author}} - {{pc.rating}}/10</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <!-- <ul>
+        {% for pc in pc_list %}
+            <li>{{pc.title}} - {{pc.author}} - {{pc.rating}}/10</li>
+        {% endfor %}
+    </ul> -->
+    <a href="{{ url_for('add') }}">Add another computer</a>
+</body>
+</html>

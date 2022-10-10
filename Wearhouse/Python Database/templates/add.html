@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add a pc you have used...</h1>
+    <form action="/add" method="POST">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value="Harry Potter"><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" value="J. K. Rawling"><br><br>
+        <label for="rating">Last name:</label><br>
+        <input type="text" id="rating" name="rating" value="9"><br><br>
+        <input type="submit" value="Submit">
+      </form> 
+      <a href="{{ url_for('home')}}">Return</a>
+</body>
+</html>
